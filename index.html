@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>كرياتيفو | تصميم، منتجات رقمية، وتعلم اللغات</title>
+  <title>Kaminz_Studio | تصميم، منتجات رقمية، وتعلم اللغات</title>
   <meta name="description" content="متجرك الشامل للقوالب الجاهزة، تصميم المنيو والبطاقات، المنتجات الرقمية ودروس اللغات." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎨</text></svg>" />
+  <!-- تحميل الوضع المحفوظ قبل رسم الصفحة (تجنّب الوميض) -->
+  <script>
+    (function () {
+      const theme = localStorage.getItem('kaminz_theme');
+      if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
@@ -18,7 +26,7 @@
     <nav class="nav container">
       <a href="#home" class="logo">
         <span class="logo-dot"></span>
-        <span class="logo-accent">Kaminz Studio.dz</span>
+        Kaminz<span class="logo-accent">_Studio</span>
       </a>
 
       <ul class="nav-list" id="nav-list">
@@ -29,6 +37,13 @@
         <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
         <a href="#offers" class="btn btn-primary nav-cta">اطلب الآن</a>
       </ul>
+
+      <!-- أزرار التحكم: الوضع الليلي / الأدمن / تسجيل الدخول -->
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" title="الوضع الليلي / النهاري" aria-label="تبديل الوضع">🌙</button>
+        <button class="icon-btn icon-btn-lock" id="admin-btn" title="دخول الأدمن" aria-label="دخول الأدمن">🔒</button>
+        <button class="btn btn-primary nav-auth" id="auth-btn">تسجيل الدخول</button>
+      </div>
 
       <button class="menu-toggle" id="menu-toggle" aria-label="فتح القائمة">
         <span></span><span></span><span></span>
@@ -268,7 +283,7 @@
       <div class="footer-col">
         <a href="#home" class="logo logo-footer">
           <span class="logo-dot"></span>
-          كرياتيفو<span class="logo-accent">.dz</span>
+          Kaminz<span class="logo-accent">_Studio</span>
         </a>
         <p>متجرك الشامل للتصميم، المنتجات الرقمية وتعلم اللغات.</p>
       </div>
@@ -280,9 +295,9 @@
       </div>
       <div class="footer-col">
         <h4>تواصل معنا</h4>
-        <a href="https://wa.me/0798340502" target="_blank">📱 واتساب</a>
-        <a href="/cdn-cgi/l/email-protection#b5d6dadbc1d4d6c1f5d0cdd4d8c5d9d09bd6dad8">✉️ الإيميل</a>
-        <a href="https://www.instagram.com/Kherfi_mohamin" target="_blank">📷 انستغرام</a>
+        <a href="https://wa.me/213XXXXXXXXX" target="_blank" rel="noopener">📱 واتساب</a>
+        <a href="/cdn-cgi/l/email-protection#afccc0c1dbceccdbefcad7cec2dfc3ca81ccc0c2">✉️ الإيميل</a>
+        <a href="#" target="_blank" rel="noopener">📷 انستغرام</a>
       </div>
       <div class="footer-col">
         <h4>قريباً 🔔</h4>
@@ -295,9 +310,39 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 كرياتيفو.dz — جميع الحقوق محفوظة. صنع بحب 💙 في الجزائر</p>
+      <p>© 2026 Kaminz_Studio — جميع الحقوق محفوظة. صنع بحب 💙 في الجزائر</p>
     </div>
   </footer>
+
+  <!-- ===== نافذة تسجيل الدخول / إنشاء حساب ===== -->
+  <div class="modal-overlay" id="auth-modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-label="تسجيل الدخول أو إنشاء حساب">
+      <button class="modal-close" id="modal-close" aria-label="إغلاق">✕</button>
+      <h3 class="modal-title">مرحباً بيك في Kaminz_Studio 👋</h3>
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="login" type="button">تسجيل الدخول</button>
+        <button class="modal-tab" data-tab="signup" type="button">إنشاء حساب</button>
+      </div>
+
+      <form class="modal-form" id="login-form">
+        <input type="email" placeholder="البريد الإلكتروني" required />
+        <input type="password" placeholder="كلمة السر" required minlength="6" />
+        <button type="submit" class="btn btn-primary btn-block">دخول</button>
+      </form>
+
+      <form class="modal-form hidden" id="signup-form">
+        <input type="text" id="signup-name" placeholder="الاسم الكامل" required />
+        <input type="email" placeholder="البريد الإلكتروني" required />
+        <input type="password" placeholder="كلمة السر (6 أحرف على الأقل)" required minlength="6" />
+        <button type="submit" class="btn btn-yellow btn-block">إنشاء الحساب</button>
+      </form>
+
+      <p class="modal-note">💡 النسخة الحالية تحفظ حسابك محلياً في متصفحك — قريباً نربطوها بقاعدة بيانات حقيقية.</p>
+    </div>
+  </div>
+
+  <!-- ===== التنبيهات ===== -->
+  <div class="toast" id="toast" role="status"></div>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
 </body>
